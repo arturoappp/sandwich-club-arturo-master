@@ -11,19 +11,27 @@ import java.util.List;
 
 public class JsonUtils {
 
+    public static final String KEY_NAME = "name";
+    public static final String KEY_MAIN_NAME = "mainName";
+    public static final String KEY_ALSO_KNOWN_AS = "alsoKnownAs";
+    public static final String KEY_PLACE_OF_ORIGIN = "placeOfOrigin";
+    public static final String KEY_DESCRIPTION = "description";
+    public static final String KEY_IMAGE = "image";
+    public static final String KEY_INGREDIENTS = "ingredients";
+
     public static Sandwich parseSandwichJson(String json) {
 
         try {
             JSONObject sandwich = new JSONObject(json);
-            JSONObject name = sandwich.getJSONObject("name");
+            JSONObject name = sandwich.getJSONObject(KEY_NAME);
 
-            String mainName = name.getString("mainName");
-            JSONArray alsoKnownAs = name.getJSONArray("alsoKnownAs");
+            String mainName = name.getString(KEY_MAIN_NAME);
+            JSONArray alsoKnownAs = name.getJSONArray(KEY_ALSO_KNOWN_AS);
 
-            String placeOfOrigin = sandwich.getString("placeOfOrigin");
-            String description = sandwich.getString("description");
-            String image = sandwich.getString("image");
-            JSONArray ingredients = sandwich.getJSONArray("ingredients");
+            String placeOfOrigin = sandwich.getString(KEY_PLACE_OF_ORIGIN);
+            String description = sandwich.getString(KEY_DESCRIPTION);
+            String image = sandwich.getString(KEY_IMAGE);
+            JSONArray ingredients = sandwich.getJSONArray(KEY_INGREDIENTS);
 
             Sandwich sandwichObj = new Sandwich(mainName, jSonArrayToList(alsoKnownAs), placeOfOrigin, description, image, jSonArrayToList(ingredients));
 
